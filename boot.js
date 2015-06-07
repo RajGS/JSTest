@@ -193,7 +193,7 @@ dpz.marketSetup = function () {
     } };
 }();
 dpz.marketSetup.init();
-$.ajax({ url: (dpz.marketSetup.hasCors() ? dpz.market.directory : dpz.market.directoryLocal) + "/config/app/app.json", async: true, success: function (a) {
+$.ajax({ url: (dpz.marketSetup.hasCors() ? dpz.market.directory : dpz.market.directoryLocal) + "/config/app/app.json", async: false, success: function (a) {
     dpz.market.marketConfig = a;
     define("dpz.marketconfig", function () {
         return dpz.market.marketConfig;
