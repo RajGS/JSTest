@@ -74,7 +74,9 @@ dpz.marketSetup = function () {
             return false;
         }
     }, determineMarket: function () {
+        console.log("determineMarket");
         var a = d.getForcedMarket();
+        console.log("a = " + a);
         if (a)
             return d.basicCacheClear(), d.requestMarket({ url: d.marketDeterminationURL(a), success: d.handleMarketDeterminationResponse }), true;
         if (d.configureMarketFromLocalStorage())
@@ -182,6 +184,7 @@ dpz.marketSetup = function () {
         dpz.market.directoryLocal = urlConfig.localAssets + "/market/" + dpz.market.folderName;
         d.basicCacheSave();
         requirejs.config(d.buildRequireJSConfig({ moduleBase: urlConfig.root + "/assets/base/js/modules", primaryMarketDirectory: dpz.market.primaryDirectory, marketDirectory: dpz.market.directory, marketDirectoryLocal: dpz.market.directoryLocal }));
+        console.log(JSON.stringify(dpz.market));
     }, buildRequireJSConfig: function (a) {
         return { baseUrl: a.moduleBase, paths: { master: urlConfig.assets + "/market/_master", market: d.hasCors() ? a.marketDirectory : a.marketDirectoryLocal, marketconfig: (d.hasCors() ? a.marketDirectory : a.marketDirectoryLocal) + "/config", marketjs: (d.hasCors() ? a.marketDirectory : a.marketDirectoryLocal) + "/js", marketmodules: (d.hasCors() ? a.marketDirectory : a.marketDirectoryLocal) + "/js/modules", markettemplates: (d.hasCors() ? a.marketDirectory : a.marketDirectoryLocal) + "/templates", marketprimary: a.primaryMarketDirectory }, text: { useXhr: function () {
             return true;
